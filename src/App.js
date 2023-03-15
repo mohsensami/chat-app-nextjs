@@ -42,10 +42,10 @@ function App() {
     return (
         <div className="App">
             <h1 className="App-logo-text">File Uploader</h1>
-            <p>Upload your files here</p>
             <button className="upload-button" onClick={handleClick}>
                 Upload
             </button>
+            <p>Upload your files here</p>
             <div className="upload-history">
                 <h3>Upload history:</h3>
                 {uploadHistory.length === 0 && <p>No files have been uploaded yet</p>}
@@ -69,7 +69,7 @@ function App() {
                     // apikey={process.env.REACT_APP_FILESTACK_API_KEY}
                     apikey={"APnT9AOk8QsmUrnnDjDHiz"}
                     onUploadDone={(res) => {
-                        console.log(res);
+                        // console.log(res);
                         handleUploadDone(res);
                     }}
                 />

@@ -7,7 +7,7 @@
 
 /* Global styles */
 body {
-    background-color: #f2f2f2;
+    background-color: #ffefbf;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     line-height: 1.5;
@@ -36,12 +36,13 @@ p {
 
 .upload-button {
     display: inline-block;
-    background-color: #008cba;
+    background-color: #e91e63;
     color: #fff;
-    padding: 0.75rem 1.5rem;
+    padding: 1.75rem 1.5rem;
+    width: 400px;
     border: none;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 1.7rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
