@@ -25,6 +25,7 @@ function App() {
     function handleUploadDone(res) {
         // Save upload handle to local storage
         const updatedHistory = [...uploadHistory];
+        // eslint-disable-next-line array-callback-return
         res.filesUploaded.map((file) => {
             const newUpload = {
                 handle: file.handle,
