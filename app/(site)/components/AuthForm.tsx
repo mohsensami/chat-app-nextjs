@@ -7,6 +7,8 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import AuthSocialButton from './AuthSocialButton';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 
 type Variant = 'LOGIN' | 'REGISTER';
 
@@ -35,40 +37,41 @@ const AuthForm = () => {
         setIsLoading(true);
 
         if (variant === 'REGISTER') {
-            axios.post('/api/register', data);
-            //   .then(() => signIn('credentials', {
-            //     ...data,
-            //     redirect: false,
-            //   }))
-            //   .then((callback) => {
-            //     if (callback?.error) {
-            //       toast.error('Invalid credentials!');
-            //     }
+            axios
+                .post('/api/register', data)
+                //   .then(() => signIn('credentials', {
+                //     ...data,
+                //     redirect: false,
+                //   }))
+                //   .then((callback) => {
+                //     if (callback?.error) {
+                //       toast.error('Invalid credentials!');
+                //     }
 
-            //     if (callback?.ok) {
-            //       router.push('/conversations')
-            //     }
-            //   })
-            //   .catch(() => toast.error('Something went wrong!'))
-            //   .finally(() => setIsLoading(false))
+                //     if (callback?.ok) {
+                //       router.push('/conversations')
+                //     }
+                //   })
+                .catch(() => toast.error('Something went wrong!'))
+                .finally(() => setIsLoading(false));
         }
 
-        // if (variant === 'LOGIN') {
-        //   signIn('credentials', {
-        //     ...data,
-        //     redirect: false
-        //   })
-        //   .then((callback) => {
-        //     if (callback?.error) {
-        //       toast.error('Invalid credentials!');
-        //     }
+        if (variant === 'LOGIN') {
+            signIn('credentials', {
+                ...data,
+                redirect: false,
+            })
+                .then((callback) => {
+                    if (callback?.error) {
+                        toast.error('Invalid credentials!');
+                    }
 
-        //     if (callback?.ok) {
-        //       router.push('/conversations')
-        //     }
-        //   })
-        //   .finally(() => setIsLoading(false))
-        // }
+                    if (callback?.ok) {
+                        toast.success('Logged in!');
+                    }
+                })
+                .finally(() => setIsLoading(false));
+        }
     };
 
     const socialAction = (action: string) => {
