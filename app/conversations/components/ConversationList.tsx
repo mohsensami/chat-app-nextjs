@@ -10,7 +10,7 @@ import clsx from 'clsx';
 
 import useConversation from '@/app/hooks/useConversation';
 // import { pusherClient } from '@/app/libs/pusher';
-// import GroupChatModal from '@/app/components/modals/GroupChatModal';
+import GroupChatModal from '@/app/components/modals/GroupChatModal';
 import ConversationBox from './ConversationBox';
 import { FullConversationType } from '@/app/types';
 
@@ -78,7 +78,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems, users
 
     return (
         <>
-            {/* <GroupChatModal users={users} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
+            <GroupChatModal users={users} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             <aside
                 className={clsx(
                     `
