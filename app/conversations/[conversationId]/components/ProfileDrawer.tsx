@@ -23,7 +23,7 @@ interface ProfileDrawerProps {
 }
 
 const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) => {
-    const [confirmOpen, setConfirmOpen] = useState(true);
+    const [confirmOpen, setConfirmOpen] = useState(false);
     const otherUser = useOtherUser(data);
 
     const joinedDate = useMemo(() => {
