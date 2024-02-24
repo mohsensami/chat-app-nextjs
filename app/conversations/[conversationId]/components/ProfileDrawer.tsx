@@ -11,8 +11,8 @@ import useOtherUser from '@/app/hooks/useOtherUser';
 
 import Avatar from '@/app/components/Avatar';
 import AvatarGroup from '@/app/components/AvatarGroup';
-// import ConfirmModal from './ConfirmModal';
-import Modal from '@/app/components/modals/Modal';
+import ConfirmModal from './ConfirmModal';
+// import Modal from '@/app/components/modals/Modal';
 
 interface ProfileDrawerProps {
     isOpen: boolean;
@@ -47,15 +47,15 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
 
     return (
         <>
-            {/* <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)} /> */}
-            <Modal
+            <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)} />
+            {/* <Modal
                 isOpen={confirmOpen}
                 onClose={() => {
                     setConfirmOpen(false);
                 }}
             >
                 asdas
-            </Modal>
+            </Modal> */}
             <Transition.Root show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-50" onClose={onClose}>
                     <Transition.Child
