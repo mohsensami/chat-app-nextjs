@@ -7,12 +7,11 @@ import { Conversation, User } from '@prisma/client';
 import { format } from 'date-fns';
 
 import useOtherUser from '@/app/hooks/useOtherUser';
-// import useActiveList from '@/app/hooks/useActiveList';
+import useActiveList from '@/app/hooks/useActiveList';
 
 import Avatar from '@/app/components/Avatar';
 import AvatarGroup from '@/app/components/AvatarGroup';
 import ConfirmModal from './ConfirmModal';
-// import Modal from '@/app/components/modals/Modal';
 
 interface ProfileDrawerProps {
     isOpen: boolean;
@@ -34,28 +33,21 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
         return data.name || otherUser.name;
     }, [data.name, otherUser.name]);
 
-    // const { members } = useActiveList();
-    // const isActive = members.indexOf(otherUser?.email!) !== -1;
+    const { members } = useActiveList();
+    const isActive = members.indexOf(otherUser?.email!) !== -1;
 
-    // const statusText = useMemo(() => {
-    //     if (data.isGroup) {
-    //         return `${data.users.length} members`;
-    //     }
+    const statusText = useMemo(() => {
+        if (data.isGroup) {
+            return `${data.users.length} members`;
+        }
 
-    //     return isActive ? 'Active' : 'Offline';
-    // }, [data, isActive]);
+        return isActive ? 'Active' : 'Offline';
+    }, [data, isActive]);
 
     return (
         <>
             <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)} />
-            {/* <Modal
-                isOpen={confirmOpen}
-                onClose={() => {
-                    setConfirmOpen(false);
-                }}
-            >
-                asdas
-            </Modal> */}
+
             <Transition.Root show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-50" onClose={onClose}>
                     <Transition.Child
@@ -108,7 +100,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
                                                         )}
                                                     </div>
                                                     <div>{title}</div>
-                                                    {/* <div className="text-sm text-gray-500">{statusText}</div> */}
+                                                    <div className="text-sm text-gray-500">{statusText}</div>
                                                     <div className="flex gap-10 my-8">
                                                         <div
                                                             onClick={() => setConfirmOpen(true)}
